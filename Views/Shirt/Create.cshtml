@@ -1,0 +1,17 @@
+@model Whitees.Models.Shirt
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create New Whitees</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <br />
+    <input type="submit" class="btn btn-success" value="Create" />
+    <a asp-action="Index" class="btn btn-outline-danger">Cancel</a>
+</form>

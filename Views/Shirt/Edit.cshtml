@@ -1,0 +1,18 @@
+@model Whitees.ViewModels.EditShirtViewModel
+@{
+    ViewData["Title"] = "Edit Whitees";
+}
+
+<h1>Edit Whitees</h1>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" id="Id" name="Id" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <br />
+    <input type="submit" class="btn btn-success" value="Save Changes" />
+    <a asp-action="Index" class="btn btn-outline-danger">Cancel</a>
+</form>

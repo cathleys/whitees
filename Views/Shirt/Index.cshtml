@@ -1,0 +1,41 @@
+@using Whitees.Models
+@model IEnumerable<Shirt>
+@{
+    ViewData["Title"] = "Shirt Page";
+}
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">White Shirts</h2>
+    </div>
+    <div class="col-6 text-end">
+        <a class="btn btn-info" asp-controller="Shirt" asp-action="Create">Add New Shirt</a>
+    </div>
+    <br />
+
+    <div class="col-12">
+        <table class="table table-striped border">
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(s => s.Name)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.Name</td>
+                    <td style="text-align: right;">
+                        @Html.ActionLink("Edit", "Edit", "Shirt", new { id = item.Id }, new { @class = "btn btn-info" })
+
+                        <a type="button" class="btn btn-danger" asp-controller="Shirt" asp-action="Delete"
+                            asp-route-id="@item.Id">Delete</a>
+
+
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
