@@ -11,5 +11,6 @@ public class Shirt
 
     public double Price { get; set; }
 
+    // public List<Photo> Photos { get; set; } = new List<Photo>();
 
 }
