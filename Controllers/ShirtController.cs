@@ -24,7 +24,7 @@ namespace Whitees.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var shirt = await _shirtRepository.GetShirtById(id);
-            if (shirt == null) return NotFound();
+            if (shirt == null) return NotFound("Whitees not found");
 
             return View(shirt);
         }
@@ -41,7 +41,12 @@ namespace Whitees.Controllers
 
             if (ModelState.IsValid)
             {
-                var newShirt = new Shirt { Name = csVM.Name };
+                var newShirt = new Shirt
+                {
+                    Name = csVM.Name,
+                    Description = csVM.Description,
+                    Price = csVM.Price
+                };
 
                 await _shirtRepository.Add(newShirt);
 
@@ -63,7 +68,11 @@ namespace Whitees.Controllers
             var shirtData = new EditShirtViewModel
             {
                 Id = shirt.Id,
-                Name = shirt.Name
+                Name = shirt.Name,
+                Description = shirt.Description,
+                Price = shirt.Price
+
+
             };
             return View(shirtData);
         }
@@ -84,7 +93,9 @@ namespace Whitees.Controllers
             var shirtData = new Shirt
             {
                 Id = id,
-                Name = editShirtVM.Name
+                Name = editShirtVM.Name,
+                Description = editShirtVM.Description,
+                Price = editShirtVM.Price
             };
 
             await _shirtRepository.Update(shirtData);

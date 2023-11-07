@@ -1,17 +1,56 @@
-@model Whitees.Models.Shirt
+@model Whitees.ViewModels.CreateShirtViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create New Whitees";
 }
 
-<h1>Create New Whitees</h1>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name"></span>
+<section class="bg-light">
+    <div class="container pb-5 gap">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-9">
+                <form class="form-horizontal" method="post" asp-action="Create">
+
+                    <div class="panel panel-default my-5">
+
+                        <h1>Add New Whitees</h1>
+
+                        <div class="panel-body">
+
+                            <div class="form-group mb-2">
+                                <label asp-for="Name">Name</label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label asp-for="Price"></label>
+                                <input asp-for="Price" class="form-control" placeholder="Php" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            @* <div class="form-group mb-2">
+                            <label asp-for="Image"></label>
+                            <input type="file" asp-for="Image" class="form-control" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                            </div> *@
+
+                            <div class="form-group ">
+                                <label asp-for="Description">Description</label>
+                                <textarea asp-for="Description" rows="3" class="form-control"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <div class="col-sm-10 col-sm-offset-2 ">
+                            <input type="submit" class="btn btn-success" value="Submit" />
+                            <a asp-action="Index" asp-controller="Shirt" class="btn btn-default">Cancel</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </div>
-    <br />
-    <input type="submit" class="btn btn-success" value="Create" />
-    <a asp-action="Index" class="btn btn-outline-danger">Cancel</a>
-</form>
+</section>
