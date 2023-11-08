@@ -29,12 +29,16 @@ Table of contents
 body,
 ul,
 li,
-p,
 a,
 label,
 input,
 div {
   font-family: "Playfair Display", sans-serif;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+}
+p {
+  font-family: "Arimo", sans-serif;
   font-size: 18px !important;
   font-weight: 300 !important;
 }

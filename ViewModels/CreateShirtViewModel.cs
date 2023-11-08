@@ -10,4 +10,7 @@ public class CreateShirtViewModel
     public string Description { get; set; }
     [Required(ErrorMessage = "Price is required")]
     public double Price { get; set; }
+
+    [Required(ErrorMessage = "Image is required")]
+    public IFormFile Image { get; set; }
 }
