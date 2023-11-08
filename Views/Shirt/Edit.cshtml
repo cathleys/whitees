@@ -7,7 +7,7 @@
     <div class="container pb-5 gap">
         <div class="row">
             <div class="col-xs-12 col-sm-9">
-                <form class="form-horizontal" method="post" asp-action="Edit">
+                <form class="form-horizontal" method="post" asp-action="Edit" enctype="multipart/form-data">
                     <input type="hidden" asp-for="Id" name="Id" id="Id" />
                     <div class="panel panel-default my-5">
 
@@ -25,16 +25,16 @@
                                 <input asp-for="Price" class="form-control" placeholder="Php" />
                                 <span asp-validation-for="Price" class="text-danger"></span>
                             </div>
-                            @* <div class="form-group mb-2">
-                            <label asp-for="Image"></label>
-                            <input type="file" asp-for="Image" class="form-control" />
-                            <span asp-validation-for="Image" class="text-danger"></span>
-                            </div> *@
 
                             <div class="form-group ">
                                 <label asp-for="Description">Description</label>
                                 <textarea asp-for="Description" rows="3" class="form-control"></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label asp-for="Image"></label>
+                                <input type="file" asp-for="Image" class="form-control" />
+                                <span asp-validation-for="Image" class="text-danger"></span>
                             </div>
 
                         </div>

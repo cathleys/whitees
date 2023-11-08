@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Whitees.Data;
+using Whitees.Helpers;
 using Whitees.Interfaces;
 using Whitees.Repositories;
+using Whitees.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,8 @@ builder.Services.AddDbContext<DataContext>(opt =>
 });
 
 builder.Services.AddScoped<IShirtRepository, ShirtRepository>();
-
+builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 
 var app = builder.Build();
