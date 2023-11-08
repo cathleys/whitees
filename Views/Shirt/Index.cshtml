@@ -1,3 +1,4 @@
+@using Whitees.Data
 @using Whitees.Models
 @model IEnumerable<Shirt>
 @{
@@ -76,15 +77,20 @@
                                         <li class="list-inline-item"><a class="btn btn-info text-white"
                                                 href="@Url.Action("Detail","Shirt", new{id = item.Id})"><i
                                                     class="fa fa-eye"></i></a></li>
-                                        <li class="list-inline-item">
-                                            <a class="btn btn-success text-white" asp-controller="Shirt" asp-action="Edit"
-                                                asp-route-id="@item.Id"><i class="fa fa-edit"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item"><a class="btn btn-danger text-white"
-                                                asp-controller="Shirt" asp-action="Delete" asp-route-id="@item.Id">Delete
-                                            </a>
-                                        </li>
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                                        {
+
+                                            <li class="list-inline-item">
+                                                <a class="btn btn-success text-white" asp-controller="Shirt" asp-action="Edit"
+                                                    asp-route-id="@item.Id"><i class="fa fa-edit"></i>
+                                                </a>
+                                            </li>
+                                            <li class="list-inline-item"><a class="btn btn-danger text-white"
+                                                    asp-controller="Shirt" asp-action="Delete" asp-route-id="@item.Id">Delete
+                                                </a>
+                                            </li>
+                                        }
+
                                     </ul>
                                 </div>
                             </div>

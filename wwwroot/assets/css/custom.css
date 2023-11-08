@@ -62,3 +62,86 @@ form label {
   margin-top: 196px;
   border: 4px solid #f3f3f3;
 }
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.card-columns .card {
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 3;
+    column-gap: 1.25rem;
+  }
+  .card-columns .card {
+    display: inline-block;
+    width: 100%;
+  }
+}
+.text-muted {
+  color: #9faecb !important;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.card {
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 15px 1px rgba(52, 40, 104, 0.08);
+}
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e5e9f2;
+  border-radius: 0.2rem;
+}
