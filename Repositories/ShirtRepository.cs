@@ -37,6 +37,7 @@ public class ShirtRepository : IShirtRepository
     public async Task<PagedResult<Shirt>> GetPaginatedShirts(UserParams userParams)
     {
         var query = _context.Shirts.AsQueryable();
+        var shirtCount = await query.CountAsync();
 
 
         //filter on ShirtSale
@@ -45,8 +46,14 @@ public class ShirtRepository : IShirtRepository
             query = query.Where(s => s.ShirtSale == userParams.ShirtSale);
         }
 
+        //filter on searchbar
+        if (!string.IsNullOrEmpty(userParams.searchString))
+        {
+            query = query.Where(s => s.Name.Contains(userParams.searchString));
+            _ = shirtCount;
+        }
+
         //pagination
-        var shirtCount = await query.CountAsync();
         var excludeItems = (userParams.PageSize * userParams.PageNumber) - userParams.PageSize;
         query = query.Skip(excludeItems).Take(userParams.PageSize);
 
