@@ -108,13 +108,16 @@
 
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <a class="nav-icon position-relative text-decoration-none me-2" asp-area="" asp-controller="Dashboard"
+                            asp-action="Index">
+                            Dashboard
+                        </a>
                         <form asp-area="" asp-controller="Account" asp-action="Logout">
                              <button type="submit" 
                                 style="border: none; outline: none; background: none;" 
                             > Logout</button>
                         </form>
 
-                           
                     }
                     else
                     {

@@ -1,0 +1,122 @@
+@using Whitees.ViewModels
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<br>
+<br>
+
+<section class="container">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Orders</p>
+                            <h4 class="my-1 text-info">4805</h4>
+                            <p class="mb-0 font-13">+2.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i
+                                class="fa fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-danger">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Revenue</p>
+                            <h4 class="my-1 text-danger">Php84,245</h4>
+                            <p class="mb-0 font-13">+5.4% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+                                class="fa fa-dollar"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-success">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Bounce Rate</p>
+                            <h4 class="my-1 text-success">34.6%</h4>
+                            <p class="mb-0 font-13">-4.5% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
+                                class="fa fa-bar-chart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-start border-0 border-3 border-warning">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Customers</p>
+                            <h4 class="my-1 text-warning">8.4K</h4>
+                            <p class="mb-0 font-13">+8.4% from last week</p>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
+                                class="fa fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<section class="container">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+        <a type="button" class="btn btn-success me-md-2" href="@Url.Action("Create","Shirt")">Add New WhiTees</a>
+
+    </div>
+</section>
+<br>
+<br>
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach (var item in Model.Shirts)
+            {
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        <img class="card-img-top" src="@item.Image" alt="Card image cap">
+
+                        <div class="card-body">
+                            <h2 class="card-text">@item.Name</h2>
+                            <p class="card-text">@item.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-action="Detail" asp-controller="Shirt" asp-route-id="@item.Id"
+                                        class="btn btn-sm btn-outline-success">View</a>
+                                    <a asp-action="Edit" asp-controller="Shirt" asp-route-id="@item.Id"
+                                        class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    <a asp-action="Delete" asp-controller="Shirt" asp-route-id="@item.Id"
+                                        class="btn btn-sm btn-outline-danger">Delete</a>
+                                </div>
+                                <small class="text-body-secondary">Php @item.Price</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+</div>

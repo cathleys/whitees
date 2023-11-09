@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Whitees.Extensions;
 using Whitees.Interfaces;
 using Whitees.Models;
 using Whitees.ViewModels;
@@ -8,12 +9,15 @@ namespace Whitees.Controllers
     public class ShirtController : Controller
     {
         private readonly IShirtRepository _shirtRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IPhotoService _photoService;
 
         public ShirtController(IShirtRepository shirtRepository,
+        IHttpContextAccessor httpContextAccessor,
          IPhotoService photoService)
         {
             _shirtRepository = shirtRepository;
+            _httpContextAccessor = httpContextAccessor;
             _photoService = photoService;
         }
 
@@ -27,15 +31,21 @@ namespace Whitees.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var shirt = await _shirtRepository.GetShirtById(id);
-            if (shirt == null) return NotFound("Whitees not found");
+            if (shirt == null) return View("Error");
 
             return View(shirt);
         }
 
         public IActionResult Create()
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
 
-            return View();
+            var creatVM = new CreateShirtViewModel
+            {
+                AppUserId = userId
+            };
+
+            return View(creatVM);
         }
 
         [HttpPost]
@@ -51,12 +61,13 @@ namespace Whitees.Controllers
                     Name = csVM.Name,
                     Description = csVM.Description,
                     Price = csVM.Price,
-                    Image = imageResult.SecureUrl.AbsoluteUri
+                    Image = imageResult.SecureUrl.AbsoluteUri,
+                    AppUserId = csVM.AppUserId
                 };
 
                 await _shirtRepository.Add(newShirt);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Dashboard");
             }
             ModelState.AddModelError("", "Failed to add new whitees");
             return View(csVM);
@@ -67,8 +78,9 @@ namespace Whitees.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+            var userId = _httpContextAccessor.HttpContext.User.GetUserId();
             var shirt = await _shirtRepository.GetShirtById(id);
-            if (shirt == null) return NotFound();
+            if (shirt == null) return View("Error");
 
 
             var shirtData = new EditShirtViewModel
@@ -78,6 +90,7 @@ namespace Whitees.Controllers
                 Description = shirt.Description,
                 Price = shirt.Price,
                 ImageUrl = shirt.Image,
+                AppUserId = userId,
 
             };
             return View(shirtData);
@@ -115,11 +128,12 @@ namespace Whitees.Controllers
                     Name = esVM.Name,
                     Description = esVM.Description,
                     Price = esVM.Price,
-                    Image = imageResult.SecureUrl.AbsoluteUri
+                    Image = imageResult.SecureUrl.AbsoluteUri,
+                    AppUserId = esVM.AppUserId
                 };
 
                 await _shirtRepository.Update(shirtData);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             return View(esVM);
@@ -150,7 +164,7 @@ namespace Whitees.Controllers
             await _shirtRepository.Delete(shirt);
 
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Dashboard");
 
         }
     }
