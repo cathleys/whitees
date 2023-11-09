@@ -53,9 +53,9 @@
                 <div class="w-100 pt-1 mb-5 text-right">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <form asp-action="Index" asp-controller="Shirt" method="get" class="modal-content modal-body border-0 p-0">
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                        <input type="text" name="searchString" class="form-control" id="inputModalSearch" placeholder="Search ...">
                         <button type="submit" class="input-group-text bg-success text-light">
                             <i class="fa fa-fw fa-search text-white"></i>
                         </button>
@@ -93,17 +93,14 @@
                     </div>
                     <div class="navbar align-self-center d-flex">
                         <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                                <div class="input-group-text">
-                                    <i class="fa fa-fw fa-search"></i>
-                                </div>
-                            </div>
+                            <form class="input-group" asp-action="Index" asp-controller="Shirt">
+                                <input type="text" name="searchString" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                                <button type="submit" class="input-group-text bg-success text-light">
+                                    <i class="fa fa-fw fa-search text-white"></i>
+                                </button>
+                            </form>
                         </div>
-                        <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal"
-                            data-bs-target="#templatemo_search">
-                            <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                        </a>
+
 
 
                     @if (User.Identity.IsAuthenticated)
