@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Whitees.Extensions;
+using Whitees.Helpers;
 using Whitees.Interfaces;
 using Whitees.Models;
 using Whitees.ViewModels;
@@ -21,9 +22,10 @@ namespace Whitees.Controllers
             _photoService = photoService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(UserParams userParams)
         {
-            var shirts = await _shirtRepository.GetAllShirts();
+
+            var shirts = await _shirtRepository.GetPaginatedShirts(userParams);
 
             return View(shirts);
         }
