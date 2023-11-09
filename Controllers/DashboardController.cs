@@ -18,10 +18,11 @@ namespace Whitees.Controllers
 
         public async Task<IActionResult> Index()
         {
-
-
             var userShirts = await _dashboardRepository.GetShirts();
-
+            if (userShirts.Count <= 0)
+            {
+                TempData["Error"] = "You haven't posted any Whitees yet. Add a new one.";
+            }
             var dashboardVM = new DashboardViewModel
             {
                 Shirts = userShirts,
