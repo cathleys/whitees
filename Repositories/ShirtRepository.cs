@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq;
+using cloudscribe.Pagination.Models;
+using Microsoft.EntityFrameworkCore;
 using Whitees.Data;
+using Whitees.Helpers;
 using Whitees.Interfaces;
 using Whitees.Models;
 
@@ -25,9 +28,37 @@ public class ShirtRepository : IShirtRepository
         return await Save();
     }
 
-    public async Task<IEnumerable<Shirt>> GetAllShirts()
+    public async Task<IEnumerable<Shirt>> GetAllShirts(string sortShirts)
     {
         return await _context.Shirts.ToListAsync();
+
+    }
+
+    public async Task<PagedResult<Shirt>> GetPaginatedShirts(UserParams userParams)
+    {
+        var query = _context.Shirts.AsQueryable();
+
+
+        //filter on ShirtSale
+        if (userParams.ShirtSale != null)
+        {
+            query = query.Where(s => s.ShirtSale == userParams.ShirtSale);
+        }
+
+        //pagination
+        var shirtCount = await query.CountAsync();
+        var excludeItems = (userParams.PageSize * userParams.PageNumber) - userParams.PageSize;
+        query = query.Skip(excludeItems).Take(userParams.PageSize);
+
+        var result = new PagedResult<Shirt>
+        {
+            Data = await query.AsNoTracking().ToListAsync(),
+            TotalItems = shirtCount,
+            PageNumber = userParams.PageNumber,
+            PageSize = userParams.PageSize,
+        };
+
+        return result;
 
     }
 

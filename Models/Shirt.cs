@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Whitees.Data.Enums;
 
 namespace Whitees.Models;
 public class Shirt
@@ -16,5 +17,8 @@ public class Shirt
 
     public string AppUserId { get; set; }
     public AppUser AppUser { get; set; }
+
+    public ShirtSale ShirtSale { get; set; }
+    public ShirtSize ShirtSize { get; set; }
 
 }

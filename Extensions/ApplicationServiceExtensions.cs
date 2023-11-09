@@ -14,6 +14,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<IDashboardRepository, DashboardRepository>();
 
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+        services.AddCloudscribePagination();
 
         return services;
     }
