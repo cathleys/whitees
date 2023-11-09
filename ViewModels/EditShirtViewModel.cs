@@ -15,4 +15,5 @@ public class EditShirtViewModel
     public IFormFile Image { get; set; }
 
     public string? ImageUrl { get; set; }
+    public string AppUserId { get; set; }
 }

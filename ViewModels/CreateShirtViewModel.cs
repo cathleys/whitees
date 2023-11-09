@@ -13,4 +13,6 @@ public class CreateShirtViewModel
 
     [Required(ErrorMessage = "Image is required")]
     public IFormFile Image { get; set; }
+
+    public string AppUserId { get; set; }
 }
