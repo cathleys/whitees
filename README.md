@@ -22,11 +22,8 @@ ASP.NET Core MVC is a great web framework to build dynamic web apps and help dev
 
 - Implement Unit of Work pattern to centralized my repositories
 - Create partial views for my home page so that it's not all hard coded.
-<<<<<<< HEAD
 - If I had more time, I would also try to build this with .NET Core Web API and/or Blazor.
-=======
-- If I had more time, I would also try to build this with .NET Core Web API and Angular.
->>>>>>> 5b42539a3d7229c814d97ec4e14c720a2fc619b6
+
 
 \***\*\*\*\*\***The End\***\*\*\*\*\*\***
 
