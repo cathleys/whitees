@@ -71,7 +71,10 @@
                                         <i class="text-muted fa fa-star"></i>
                                     </li>
                                 </ul>
-                                <p class="text-center mb-0">Php @item.Price</p>
+
+                                <a class="btn btn-success text-white"
+                                    href="@Url.Action("AddItemToCart","Order", new{id = item.Id})">
+                                    Add to Cart (Price @item.Price.ToString("c"))</a>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,71 @@
+@using Whitees.Data
+@using Whitees.Models
+@model List<Order>
+@{
+    ViewData["Title"] = "All Orders";
+}
+<br>
+<br>
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+        <h4>Orders List</h4>
+        </p>
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span>@TempData["Error"]</span>
+            </div>
+        }
+        else
+        {
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                        {
+                            <th>User</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">@order.Id</td>
+                            <td class="align-middle">
+                                <ul style="list-style-type:none">
+                                    @foreach (var item in order.OrderItems)
+                                    {
+                                        <li>
+                                            <div class="alert alert-info" role="alert">
+                                                <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] -
+                                                @item.Shirt.Name
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                            <td class="align-middle">
+                                @order.OrderItems.Select(m => m.Shirt.Price * m.Amount).Sum().ToString("c")
+                            </td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                            {
+                                <td class="align-middle"> @order.AppUser.UserName </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+</div>
+
+<br>
+<br>

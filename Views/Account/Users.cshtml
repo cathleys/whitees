@@ -1,0 +1,45 @@
+@using Whitees.Models
+@model IEnumerable<AppUser>
+
+@{
+    ViewData["Title"] = "List of All Users";
+}
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-3">
+            <p>
+            <h4>List of all users</h4>
+            </p>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text-start">
+
+                        <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    </tr>
+                </thead>
+                <tbody class="table table-striped">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td class="align-middle ">
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td class="align-middle ">
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+<br>
+<br>
