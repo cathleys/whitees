@@ -7,4 +7,8 @@ public static class ClaimsPrincipalExtensions
     {
         return user.FindFirst(ClaimTypes.NameIdentifier).Value;
     }
+    public static string GetUserRole(this ClaimsPrincipal user)
+    {
+        return user.FindFirstValue(ClaimTypes.Role);
+    }
 }
