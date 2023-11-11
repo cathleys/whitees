@@ -91,7 +91,7 @@
             <h5 class="text-center mt-3 mb-3">All You Need Is Love</h5>
             <p class="text-center">
 
-                <a asp-action="Detail" asp-controller="Shirt" asp-route-id="1" class="btn-shop">Go Shop</a>
+                <a asp-action="Index" asp-controller="Shirt" asp-route-id="1" class="btn-shop">Go Shop</a>
             </p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
@@ -99,7 +99,7 @@
             <h2 class="h5 text-center mt-3 mb-3">Retro Hockey</h2>
             <p class="text-center">
 
-                <a asp-action="Detail" asp-controller="Shirt" asp-route-id="2" class="btn-shop">Go Shop</a>
+                <a asp-action="Index" asp-controller="Shirt" class="btn-shop">Go Shop</a>
             </p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
@@ -107,7 +107,7 @@
             <h2 class="h5 text-center mt-3 mb-3">Coffee is the love language</h2>
             <p class="text-center">
 
-                <a asp-action="Detail" asp-controller="Shirt" asp-route-id="3" class="btn-shop">Go Shop</a>
+                <a asp-action="Index" asp-controller="Shirt" class="btn-shop">Go Shop</a>
             </p>
         </div>
     </div>
@@ -129,7 +129,7 @@
         <div class="row">
             <div class="col-12 col-md-4 mb-4">
                 <div class="card h-100">
-                    <a href="shop-single.html">
+                    <a asp-action="Index" asp-controller="Shirt">
                         <img src="~/assets/img/minton.jpg" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
@@ -141,9 +141,9 @@
                                 <i class="text-muted fa fa-star"></i>
                                 <i class="text-muted fa fa-star"></i>
                             </li>
-                            <li class="text-muted text-right">$ 499.00</li>
+                            <li class="text-muted text-right">8.00</li>
                         </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Tennis Club Tee</a>
+                        <a asp-action="Index" asp-controller="Shirt" class="h2 text-decoration-none text-dark">Tennis Club Tee</a>
                         <p class="card-text">
                             Ace your fashion game with our Tennis Club logo tee. Elevate your tennis-inspired look with
                             this crisp white classic.
@@ -166,9 +166,9 @@
                                 <i class="text-muted fa fa-star"></i>
                                 <i class="text-muted fa fa-star"></i>
                             </li>
-                            <li class="text-muted text-right">$ 480.00</li>
+                            <li class="text-muted text-right">$ 7.00</li>
                         </ul>
-                        <a href="#" class="h2 text-decoration-none text-dark">Pizza Paradise Tee</a>
+                        <a asp-action="Index" asp-controller="Shirt" class="h2 text-decoration-none text-dark">Pizza Paradise Tee</a>
                         <p class="card-text">
                             Show your love for the ultimate comfort food with our Pizza logo tee. Get ready for a slice
                             of style, served on a T-shirt!
@@ -191,9 +191,9 @@
                                 <i class="text-warning fa fa-star"></i>
                                 <i class="text-warning fa fa-star"></i>
                             </li>
-                            <li class="text-muted text-right">$ 455.00</li>
+                            <li class="text-muted text-right">$ 7.00</li>
                         </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Peace Sign Tee</a>
+                        <a asp-action="Index" asp-controller="Shirt" class="h2 text-decoration-none text-dark">Peace Sign Tee</a>
                         <p class="card-text">
                             Embrace serenity with our Peace logo tee. This white classic speaks volumes in a world that
                             needs more peace and love
