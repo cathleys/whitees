@@ -9,7 +9,7 @@ My goal is to simulate building real-world web application.
 ## How to navigate this project
 
 - Somewhat complex application logic: [Example code](https://github.com/cathleys/whitees/blob/order-page/Repositories/ShoppingCart.cs)
-- This app implements Repository patterns: [Example database call](https://github.com/cathleys/whitees/blob/order-page/Repositories/ShirtRepository.cs)
+- This app implements Repository & Unit of Work pattern: [Example database call](https://github.com/cathleys/whitees/blob/order-page/Repositories/ShirtRepository.cs) [Unit of Work]()
 - CI/CD pipeline : [Example image](wwwroot/assets/img/cd.JPG)
 
 ## Why I built the project this way
@@ -20,10 +20,8 @@ ASP.NET Core MVC is a great web framework to build dynamic web apps and help dev
 
 ## If I had more time I would change this
 
-- Implement Unit of Work pattern to centralized my repositories
-- Create partial views for my home page so that it's not all hard coded.
+- Create partial views for the link elements on home page.
 - If I had more time, I would also try to build this with .NET Core Web API and/or Blazor.
-
 
 \***\*\*\*\*\***The End\***\*\*\*\*\*\***
 

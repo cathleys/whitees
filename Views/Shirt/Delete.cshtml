@@ -1,3 +1,4 @@
+@using Whitees.Data.Enums
 @model Whitees.Models.Shirt
 
 <section class="bg-light">
@@ -26,16 +27,20 @@
                                 <input asp-for="Price" class="form-control" placeholder="$" />
                                 <span asp-validation-for="Price" class="text-danger"></span>
                             </div>
-                            @* <div class="form-group mb-2">
-                            <label asp-for="Image"></label>
-                            <input type="file" asp-for="Image" class="form-control" />
-                            <span asp-validation-for="Image" class="text-danger"></span>
-                            </div> *@
 
                             <div class="form-group ">
                                 <label asp-for="Description">Description</label>
                                 <textarea asp-for="Description" rows="3" class="form-control"></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group mb-2 ">
+                                <label asp-for="ShirtSale"></label>
+                                <select asp-for="ShirtSale" asp-items="Html.GetEnumSelectList<ShirtSale>()"
+                                    class="form-control">
+
+                                </select>
+                                <span asp-validation-for="ShirtSale"></span>
                             </div>
 
                         </div>
