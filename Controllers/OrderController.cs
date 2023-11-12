@@ -10,22 +10,17 @@ namespace Whitees.Controllers
     [Authorize]
     public class OrderController : Controller
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IUnitOfWork _uow;
         private readonly IShoppingCart _shoppingCart;
-        private readonly IShirtRepository _shirtRepository;
 
-        public OrderController(IOrderRepository orderRepository,
-        IShoppingCart shoppingCart,
-        IShirtRepository shirtRepository
-         )
+        public OrderController(IUnitOfWork uow, IShoppingCart shoppingCart)
         {
-            _orderRepository = orderRepository;
+            _uow = uow;
             _shoppingCart = shoppingCart;
-            _shirtRepository = shirtRepository;
         }
         public async Task<IActionResult> Index()
         {
-            var orders = await _orderRepository.GetOrdersByUserIdAndRoleAsync();
+            var orders = await _uow.OrderRepository.GetOrdersByUserIdAndRoleAsync();
 
             if (orders.Count <= 0)
             {
@@ -50,7 +45,7 @@ namespace Whitees.Controllers
 
         public async Task<IActionResult> AddItemToCart(int id)
         {
-            var item = await _shirtRepository.GetShirtById(id);
+            var item = await _uow.ShirtRepository.GetShirtById(id);
 
             if (item != null)
             {
@@ -61,7 +56,7 @@ namespace Whitees.Controllers
 
         public async Task<IActionResult> RemoveItemFromCart(int id)
         {
-            var item = await _shirtRepository.GetShirtById(id);
+            var item = await _uow.ShirtRepository.GetShirtById(id);
 
             if (item != null)
             {
@@ -73,10 +68,10 @@ namespace Whitees.Controllers
         public async Task<IActionResult> CompleteOrder()
         {
             var items = await _shoppingCart.GetShoppingCartItems();
-            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
 
-            await _orderRepository.StoreOrderAsync(items, userId, userEmailAddress);
+            await _uow.OrderRepository.StoreOrderAsync(items, userId, userEmailAddress);
             await _shoppingCart.ClearShoppingCartAsync();
 
             return View("OrderCompleted");

@@ -9,15 +9,15 @@ namespace Whitees.Controllers
 {
     public class ShirtController : Controller
     {
-        private readonly IShirtRepository _shirtRepository;
+        private readonly IUnitOfWork _uow;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IPhotoService _photoService;
 
-        public ShirtController(IShirtRepository shirtRepository,
+        public ShirtController(IUnitOfWork uow,
         IHttpContextAccessor httpContextAccessor,
          IPhotoService photoService)
         {
-            _shirtRepository = shirtRepository;
+            _uow = uow;
             _httpContextAccessor = httpContextAccessor;
             _photoService = photoService;
         }
@@ -25,14 +25,14 @@ namespace Whitees.Controllers
         public async Task<IActionResult> Index(UserParams userParams)
         {
 
-            var shirts = await _shirtRepository.GetPaginatedShirts(userParams);
+            var shirts = await _uow.ShirtRepository.GetPaginatedShirts(userParams);
 
             return View(shirts);
         }
 
         public async Task<IActionResult> Detail(int id)
         {
-            var shirt = await _shirtRepository.GetShirtById(id);
+            var shirt = await _uow.ShirtRepository.GetShirtById(id);
             if (shirt == null) return View("Error");
 
             return View(shirt);
@@ -67,7 +67,7 @@ namespace Whitees.Controllers
                     AppUserId = csVM.AppUserId
                 };
 
-                await _shirtRepository.Add(newShirt);
+                await _uow.ShirtRepository.Add(newShirt);
 
                 return RedirectToAction("Index", "Dashboard");
             }
@@ -81,7 +81,7 @@ namespace Whitees.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var userId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var shirt = await _shirtRepository.GetShirtById(id);
+            var shirt = await _uow.ShirtRepository.GetShirtById(id);
             if (shirt == null) return View("Error");
 
 
@@ -107,7 +107,7 @@ namespace Whitees.Controllers
                 return View("Edit", esVM);
             }
 
-            var shirt = await _shirtRepository.GetShirtByIdNoTracking(id);
+            var shirt = await _uow.ShirtRepository.GetShirtByIdNoTracking(id);
             if (shirt != null)
             {
 
@@ -134,7 +134,7 @@ namespace Whitees.Controllers
                     AppUserId = esVM.AppUserId
                 };
 
-                await _shirtRepository.Update(shirtData);
+                await _uow.ShirtRepository.Update(shirtData);
                 return RedirectToAction("Index", "Dashboard");
             }
 
@@ -142,7 +142,7 @@ namespace Whitees.Controllers
         }
         public async Task<IActionResult> Delete(int id)
         {
-            var shirt = await _shirtRepository.GetShirtById(id);
+            var shirt = await _uow.ShirtRepository.GetShirtById(id);
 
             if (shirt == null) return NotFound();
 
@@ -154,7 +154,7 @@ namespace Whitees.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteShirt(int id)
         {
-            var shirt = await _shirtRepository.GetShirtById(id);
+            var shirt = await _uow.ShirtRepository.GetShirtById(id);
 
             if (shirt == null) return NotFound();
 
@@ -163,7 +163,7 @@ namespace Whitees.Controllers
                 await _photoService.DeletePhotoAsync(shirt.Image);
             }
 
-            await _shirtRepository.Delete(shirt);
+            await _uow.ShirtRepository.Delete(shirt);
 
 
             return RedirectToAction("Index", "Dashboard");
