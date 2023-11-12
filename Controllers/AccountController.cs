@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Whitees.Data;
 using Whitees.Interfaces;
 using Whitees.Models;
@@ -12,15 +11,15 @@ namespace Whitees.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _uow;
 
         public AccountController(UserManager<AppUser> userManager,
-        SignInManager<AppUser> signInManager, IUserRepository userRepository
+        SignInManager<AppUser> signInManager, IUnitOfWork uow
        )
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _userRepository = userRepository;
+            _uow = uow;
         }
 
 
@@ -109,7 +108,7 @@ namespace Whitees.Controllers
         //for admin 
         public async Task<IActionResult> Users()
         {
-            var users = await _userRepository.GetUsers();
+            var users = await _uow.UserRepository.GetUsers();
             return View(users);
         }
 

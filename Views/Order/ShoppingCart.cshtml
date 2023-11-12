@@ -16,7 +16,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Selected amount</th>
+                    <th>Selected Quantity</th>
                     <th>Whitees</th>
                     <th>Price</th>
                     <th>Subtotal</th>
@@ -29,8 +29,8 @@
                     <tr>
                         <td class="align-middle">@item.Amount</td>
                         <td class="align-middle">@item.Shirt.Name</td>
-                        <td class="align-middle">@item.Shirt.Price.ToString("c")</td>
-                        <td class="align-middle">@((item.Amount * item.Shirt.Price).ToString("c"))</td>
+                        <td class="align-middle">$@item.Shirt.Price</td>
+                        <td class="align-middle">$@(item.Amount * item.Shirt.Price)</td>
                         <td class="align-middle">
                             <a class="text-danger" asp-controller="Order" asp-action="RemoveItemFromCart"
                                 asp-route-id="@item.Shirt.Id">
@@ -50,7 +50,7 @@
                     <td colspan="2"></td>
                     <td><b>Total:</b></td>
                     <td>
-                        @Model.ShoppingCartTotal.ToString("c")
+                        $@Model.ShoppingCartTotal
                     </td>
                     <td></td>
                 </tr>

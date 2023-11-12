@@ -7,18 +7,16 @@ namespace Whitees.Controllers
 {
     public class DashboardController : Controller
     {
-        private readonly IDashboardRepository _dashboardRepository;
+        private readonly IUnitOfWork _uow;
 
-        public DashboardController(IDashboardRepository dashboardRepository
-       )
+        public DashboardController(IUnitOfWork uow)
         {
-            _dashboardRepository = dashboardRepository;
-
+            _uow = uow;
         }
 
         public async Task<IActionResult> Index()
         {
-            var userShirts = await _dashboardRepository.GetShirts();
+            var userShirts = await _uow.DashboardRepository.GetShirts();
             if (userShirts.Count <= 0)
             {
                 TempData["Error"] = "You haven't posted any Whitees yet. Add a new one.";

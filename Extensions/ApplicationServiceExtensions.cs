@@ -10,12 +10,9 @@ public static class ApplicationServiceExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services,
     IConfiguration config)
     {
-        services.AddScoped<IShirtRepository, ShirtRepository>();
-        services.AddScoped<IPhotoService, PhotoService>();
-        services.AddScoped<IDashboardRepository, DashboardRepository>();
-        services.AddScoped<IOrderRepository, OrderRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
 
+        services.AddScoped<IPhotoService, PhotoService>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IShoppingCart, ShoppingCart>();
 
