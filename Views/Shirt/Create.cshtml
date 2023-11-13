@@ -38,7 +38,7 @@
                             <br>
                             <div class="form-group mb-2 ">
                                 <label asp-for="ShirtSale"></label>
-                                <select asp-for="ShirtSale" asp-items="Html.GetEnumSelectList<ShirtSale>()"
+                                <select asp-for="ShirtSale" asp-items="@Html.GetEnumSelectList<ShirtSale>()"
                                     class="form-control">
                                     <option selected value="">--Select--</option>
                                 </select>
