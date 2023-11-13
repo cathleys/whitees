@@ -41,9 +41,10 @@ public class ShirtRepository : IShirtRepository
 
 
         //filter on ShirtSale
-        if (userParams.ShirtSale != null)
+        if (userParams.ShirtSale.HasValue)
         {
-            query = query.Where(s => s.ShirtSale == userParams.ShirtSale);
+            int shirtSaleValue = (int)userParams.ShirtSale.Value;
+            query = query.Where(s => (int)s.ShirtSale == shirtSaleValue);
         }
 
         //filter on searchbar

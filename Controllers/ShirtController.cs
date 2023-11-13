@@ -64,7 +64,8 @@ namespace Whitees.Controllers
                     Description = csVM.Description,
                     Price = csVM.Price,
                     Image = imageResult.SecureUrl.AbsoluteUri,
-                    AppUserId = csVM.AppUserId
+                    AppUserId = csVM.AppUserId,
+                    ShirtSale = csVM.ShirtSale
                 };
 
                 await _uow.ShirtRepository.Add(newShirt);
@@ -93,6 +94,7 @@ namespace Whitees.Controllers
                 Price = shirt.Price,
                 ImageUrl = shirt.Image,
                 AppUserId = userId,
+                ShirtSale = shirt.ShirtSale
 
             };
             return View(shirtData);
@@ -131,7 +133,8 @@ namespace Whitees.Controllers
                     Description = esVM.Description,
                     Price = esVM.Price,
                     Image = imageResult.SecureUrl.AbsoluteUri,
-                    AppUserId = esVM.AppUserId
+                    AppUserId = esVM.AppUserId,
+                    ShirtSale = esVM.ShirtSale
                 };
 
                 await _uow.ShirtRepository.Update(shirtData);
