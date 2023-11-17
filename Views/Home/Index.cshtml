@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="~/assets/img/board.jpg" alt="">
+                        <img class="img-fluid" src="~/assets/img/hhockey.png" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="~/assets/img/coffee.jpg" alt="">
+                        <img class="img-fluid" src="~/assets/img/hcoffee.png" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
@@ -48,7 +48,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="~/assets/img/love.jpg" alt="">
+                        <img class="img-fluid" src="~/assets/img/hbakeshop.png" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
@@ -78,7 +78,7 @@
 <!-- Start Categories of The Month -->
 <section class="container py-5">
     <div class="row text-center pt-3">
-        <div class="col-lg-6 m-auto">
+        <div class="col">
             <h1 class="h1">Best Seller of The Month</h1>
             <p>
                 Shop your favorite WhiTees and find what's best for you!
@@ -87,28 +87,22 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="~/assets/img/love.jpg" class="rounded-circle img-fluid border"></a>
-            <h5 class="text-center mt-3 mb-3">All You Need Is Love</h5>
-            <p class="text-center">
-
-                <a asp-action="Index" asp-controller="Shirt" asp-route-id="1" class="btn-shop">Go Shop</a>
-            </p>
+            <a href="@Url.Action("Index","Shirt")"><img src="~/assets/img/love.jpg"
+                    class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3" style="font-weight: 600;">All You Need Is Love</h5>
+            <p class="text-center"><a class="btn btn-success" href="@Url.Action("Index","Shirt")">Go Shop</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="~/assets/img/board.jpg" class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Retro Hockey</h2>
-            <p class="text-center">
-
-                <a asp-action="Index" asp-controller="Shirt" class="btn-shop">Go Shop</a>
-            </p>
+            <a href="@Url.Action("Index","Shirt")"><img src="~/assets/img/board.jpg"
+                    class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3" style="font-weight: 600;">Retro Hockey</h5>
+            <p class="text-center"><a class="btn btn-success" href="@Url.Action("Index","Shirt")">Go Shop</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="~/assets/img/coffee.jpg" class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Coffee is the love language</h2>
-            <p class="text-center">
-
-                <a asp-action="Index" asp-controller="Shirt" class="btn-shop">Go Shop</a>
-            </p>
+            <a href="@Url.Action("Index","Shirt")"><img src="~/assets/img/coffee.jpg"
+                    class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3" style="font-weight: 600;">Coffee is the love language</h5>
+            <p class="text-center"><a class="btn btn-success" href="@Url.Action("Index","Shirt")">Go Shop</a></p>
         </div>
     </div>
 </section>
@@ -141,9 +135,10 @@
                                 <i class="text-muted fa fa-star"></i>
                                 <i class="text-muted fa fa-star"></i>
                             </li>
-                            <li class="text-muted text-right">8.00</li>
+                            <li class="text-muted text-right">$8.00</li>
                         </ul>
-                        <a asp-action="Index" asp-controller="Shirt" class="h2 text-decoration-none text-dark">Tennis Club Tee</a>
+                        <h4 class="text-decoration-none text-dark">Tennis
+                            Club Tee</h4>
                         <p class="card-text">
                             Ace your fashion game with our Tennis Club logo tee. Elevate your tennis-inspired look with
                             this crisp white classic.
@@ -168,7 +163,9 @@
                             </li>
                             <li class="text-muted text-right">$ 7.00</li>
                         </ul>
-                        <a asp-action="Index" asp-controller="Shirt" class="h2 text-decoration-none text-dark">Pizza Paradise Tee</a>
+                        <h4 class="text-decoration-none text-dark">Pizza
+                            Paradise Tee</h4>
+                            
                         <p class="card-text">
                             Show your love for the ultimate comfort food with our Pizza logo tee. Get ready for a slice
                             of style, served on a T-shirt!
@@ -193,7 +190,9 @@
                             </li>
                             <li class="text-muted text-right">$ 7.00</li>
                         </ul>
-                        <a asp-action="Index" asp-controller="Shirt" class="h2 text-decoration-none text-dark">Peace Sign Tee</a>
+                        <h4 class="text-decoration-none text-dark">Peace
+                            Sign Tee</h4>
+                        
                         <p class="card-text">
                             Embrace serenity with our Peace logo tee. This white classic speaks volumes in a world that
                             needs more peace and love

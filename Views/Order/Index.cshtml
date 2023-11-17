@@ -44,7 +44,7 @@
                                     {
                                         <li>
                                             <div class="alert alert-info" role="alert">
-                                                <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] -
+                                                <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("0.00")] -
                                                 @item.Shirt.Name
                                             </div>
                                         </li>
@@ -52,7 +52,7 @@
                                 </ul>
                             </td>
                             <td class="align-middle">
-                                @order.OrderItems.Select(m => m.Shirt.Price * m.Amount).Sum().ToString("c")
+                                @order.OrderItems.Select(m => m.Shirt.Price * m.Amount).Sum().ToString("0.00")
                             </td>
                             @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
                             {
