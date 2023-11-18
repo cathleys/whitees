@@ -5,76 +5,90 @@
     ViewData["Title"] = "Shopping cart summary";
 }
 
-<br>
-<br>
-<div class="row">
-    <div class="col-md-8 offset-2">
-        <div class="text-center">
-            <h2>You shopping cart summary</h2>
+
+<div class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card2">
+        <div class="card-header">
+            <h2>Shopping Cart</h2>
         </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+                    <thead>
+                        <tr>
+                            <!-- Set columns width -->
+                            <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name &amp; Details</th>
+                            <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
+                            <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
+                            <th class="text-right py-3 px-4" style="width: 100px;">SubTotal</th>
+                            <th class="text-center align-middle py-3 px-0" style="width: 100px;"></th>
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Selected Quantity</th>
-                    <th>Whitees</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
-                {
-                    <tr>
-                        <td class="align-middle">@item.Amount</td>
-                        <td class="align-middle">@item.Shirt.Name</td>
-                        <td class="align-middle">$@item.Shirt.Price</td>
-                        <td class="align-middle">$@(item.Amount * item.Shirt.Price)</td>
-                        <td class="align-middle">
-                            <a class="text-danger" asp-controller="Order" asp-action="RemoveItemFromCart"
-                                asp-route-id="@item.Shirt.Id">
-                                Minus
-                            </a>
-                            |
-                            <a class="text-success" asp-controller="Order" asp-action="AddItemToCart"
-                                asp-route-id="@item.Shirt.Id">
-                                Add
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2"></td>
-                    <td><b>Total:</b></td>
-                    <td>
-                        $@Model.ShoppingCartTotal
-                    </td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+                        {
 
-        <div class="text-end">
-            <div class="btn-group">
-                @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
-                Complete order
-                </a>*@
-                <div id="paypal-btn"></div>
-                <span style="padding:5px"></span>
-                <a class="btn btn-outline-success" asp-controller="Shirt" asp-action="Index">
-                    Add more items
-                </a>
+                            <tr>
+                                <td class="p-4">
+                                    <div class="media align-items-center">
+                                        <div class="d-flex flex-wrap">
+
+                                            <img src="@item.Shirt.Image" class="d-block ui-w-40 ui-bordered me-4"
+                                                alt="@item.Shirt.Name">
+                                            <div class="media-body">
+                                                <a href="@Url.Action("Detail","Shirt", new{id = item.Shirt.Id})"
+                                                    class="d-block text-dark">@item.Shirt.Name</a>
+                                                <small>
+                                                    <span class="text-muted">Color: </span>White
+                                                    <span class="text-muted">Category: </span>@item.Shirt.ShirtSale
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="text-right font-weight-semibold align-middle p-4">
+                                    $@item.Shirt.Price.ToString("0.00")</td>
+                                <td class="align-middle text-center p-4">@item.Amount</td>
+                                <td class="text-right font-weight-semibold align-middle p-4">$@((item.Amount *
+                                item.Shirt.Price).ToString("0.00"))</td>
+                                <td class="text-center align-middle px-0">
+                                    <a asp-controller="Order" asp-action="AddItemToCart" asp-route-id="@item.Shirt.Id"
+                                        class="shop-tooltip close float-none text-success"><i
+                                            class="fa fa-cart-plus"></i></a>
+                                    |
+                                    <a asp-controller="Order" asp-action="RemoveItemFromCart" asp-route-id="@item.Shirt.Id"
+                                        class="shop-tooltip close float-none text-danger"><i
+                                            class="fa fa-cart-arrow-down"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
-        </div>
+            <!-- / Shopping cart table -->
 
+            <div class="d-flex flex-wrap justify-content-end align-items-center pb-4">
+
+                <div class="d-flex">
+
+                    <div class="text-right mt-4">
+                        <label class="text-muted font-weight-normal m-0">Total price</label>
+                        <div class="text-large"><strong> $@Model.ShoppingCartTotal.ToString("0.00")</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-end align-items-center">
+                <a type="button" asp-controller="Shirt" asp-action="Index" class="btn btn-outline-dark mt-2 me-3">Back
+                    to shopping</a>
+                <div id="paypal-btn"></div>
+            </div>
+
+        </div>
     </div>
 </div>
-
-<br>
-<br>
 @section Scripts {
 
     <script src="https://www.paypalobjects.com/api/checkout.js"></script>

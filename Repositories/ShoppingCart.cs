@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Whitees.Data;
-using Whitees.Interfaces;
 using Whitees.Models;
 
 namespace Whitees.Repositories;
-public class ShoppingCart : IShoppingCart
+public class ShoppingCart
 {
     private readonly DataContext _context;
     public string ShoppingCartId { get; set; }
@@ -16,10 +15,15 @@ public class ShoppingCart : IShoppingCart
         _context = context;
     }
 
-    public ShoppingCart GetShoppingCart(string cartId)
+    public static ShoppingCart GetShoppingCart(IServiceProvider services)
     {
-        return new ShoppingCart(_context) { ShoppingCartId = cartId };
+        ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+        var context = services.GetService<DataContext>();
 
+        string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+        session.SetString("CartId", cartId);
+
+        return new ShoppingCart(context) { ShoppingCartId = cartId };
     }
     public void AddCartOrderItem(Shirt shirt)
     {
