@@ -8,4 +8,5 @@ public class ShoppingCartVM
     public double ShoppingCartTotal { get; set; }
 
     public List<ShoppingCartItem> CartItems { get; set; }
+    public string AppUserId { get; set; }
 }

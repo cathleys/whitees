@@ -11,9 +11,9 @@ namespace Whitees.Controllers
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _uow;
-        private readonly IShoppingCart _shoppingCart;
+        private readonly ShoppingCart _shoppingCart;
 
-        public OrderController(IUnitOfWork uow, IShoppingCart shoppingCart)
+        public OrderController(IUnitOfWork uow, ShoppingCart shoppingCart)
         {
             _uow = uow;
             _shoppingCart = shoppingCart;
@@ -31,12 +31,13 @@ namespace Whitees.Controllers
 
         public async Task<IActionResult> ShoppingCart()
         {
+            var items = await _shoppingCart.GetShoppingCartItems();
+            _shoppingCart.ShoppingCartItems = items;
 
-            var shoppingCartVM = new ShoppingCartVM
+            var shoppingCartVM = new ShoppingCartVM()
             {
-                ShoppingCart = (ShoppingCart)_shoppingCart,
-                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal(),
-                CartItems = await _shoppingCart.GetShoppingCartItems()
+                ShoppingCart = _shoppingCart,
+                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
             };
 
             return View(shoppingCartVM);
