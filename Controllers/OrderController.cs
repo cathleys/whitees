@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Whitees.Interfaces;
 using Whitees.Repositories;
@@ -7,7 +6,6 @@ using Whitees.ViewModels;
 
 namespace Whitees.Controllers
 {
-    [Authorize]
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _uow;
@@ -31,13 +29,15 @@ namespace Whitees.Controllers
 
         public async Task<IActionResult> ShoppingCart()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var items = await _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
 
             var shoppingCartVM = new ShoppingCartVM()
             {
                 ShoppingCart = _shoppingCart,
-                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
+                ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal(),
+                AppUserId = userId
             };
 
             return View(shoppingCartVM);

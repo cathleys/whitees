@@ -35,8 +35,8 @@
                                     <div class="media align-items-center">
                                         <div class="d-flex flex-wrap">
 
-                                            <img src="@item.Shirt.Image" class="d-block ui-w-40 ui-bordered me-4"
-                                                alt="@item.Shirt.Name">
+                                            <img src="@item.Shirt.Image" width="70px"
+                                                class="d-block ui-w-40 ui-bordered me-4" alt="@item.Shirt.Name">
                                             <div class="media-body">
                                                 <a href="@Url.Action("Detail","Shirt", new{id = item.Shirt.Id})"
                                                     class="d-block text-dark">@item.Shirt.Name</a>
@@ -52,7 +52,7 @@
                                     $@item.Shirt.Price.ToString("0.00")</td>
                                 <td class="align-middle text-center p-4">@item.Amount</td>
                                 <td class="text-right font-weight-semibold align-middle p-4">$@((item.Amount *
-                                item.Shirt.Price).ToString("0.00"))</td>
+                                item.Shirt.Price).ToString())</td>
                                 <td class="text-center align-middle px-0">
                                     <a asp-controller="Order" asp-action="AddItemToCart" asp-route-id="@item.Shirt.Id"
                                         class="shop-tooltip close float-none text-success"><i
@@ -75,7 +75,7 @@
 
                     <div class="text-right mt-4">
                         <label class="text-muted font-weight-normal m-0">Total price</label>
-                        <div class="text-large"><strong> $@Model.ShoppingCartTotal.ToString("0.00")</strong></div>
+                        <div class="text-large"><strong> $@Model.ShoppingCartTotal</strong></div>
                     </div>
                 </div>
             </div>
