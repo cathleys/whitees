@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Whitees.Interfaces;
 using Whitees.Repositories;
@@ -7,7 +6,7 @@ using Whitees.ViewModels;
 
 namespace Whitees.Controllers
 {
-    [Authorize]
+
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _uow;
