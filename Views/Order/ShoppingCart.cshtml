@@ -49,10 +49,10 @@
                                     </div>
                                 </td>
                                 <td class="text-right font-weight-semibold align-middle p-4">
-                                    $@item.Shirt.Price.ToString("0.00")</td>
+                                    $@item.Shirt.Price</td>
                                 <td class="align-middle text-center p-4">@item.Amount</td>
-                                <td class="text-right font-weight-semibold align-middle p-4">$@((item.Amount *
-                                item.Shirt.Price).ToString())</td>
+                                <td class="text-right font-weight-semibold align-middle p-4">$@(item.Amount *
+                                item.Shirt.Price)</td>
                                 <td class="text-center align-middle px-0">
                                     <a asp-controller="Order" asp-action="AddItemToCart" asp-route-id="@item.Shirt.Id"
                                         class="shop-tooltip close float-none text-success"><i
