@@ -12,12 +12,14 @@
         <p>
         <h4>Orders List</h4>
         </p>
-        @* @if (TempData["Error"] != null)
+        @if (TempData["Error"] != null)
         {
             <div class="col-md-12 alert alert-danger">
                 <span>@TempData["Error"]</span>
             </div>
-        } *@
+        }else{
+
+        
         
 
             <table class="table table-striped">
@@ -26,10 +28,10 @@
                         <th>Order ID</th>
                         <th>Items</th>
                         <th>Total</th>
-                        @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                        @* @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
                         {
                             <th>User</th>
-                        }
+                        } *@
                     </tr>
                 </thead>
                 <tbody>
@@ -51,17 +53,17 @@
                                 </ul>
                             </td>
                             <td class="align-middle">
-                                @order.OrderItems.Select(m => m.Shirt.Price * m.Amount).Sum()
+                               $ @order.OrderItems.Select(m => m.Shirt.Price * m.Amount).Sum()
                             </td>
-                            @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                            @* @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
                             {
                                 <td class="align-middle"> @order.AppUser.UserName </td>
-                            }
+                            } *@
                         </tr>
                     }
                 </tbody>
             </table>
-        
+        }
 
     </div>
 </div>
