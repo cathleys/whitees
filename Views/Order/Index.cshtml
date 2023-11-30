@@ -28,10 +28,10 @@
                         <th>Order ID</th>
                         <th>Items</th>
                         <th>Total</th>
-                        @* @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                        @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
                         {
                             <th>User</th>
-                        } *@
+                        }
                     </tr>
                 </thead>
                 <tbody>
@@ -55,10 +55,10 @@
                             <td class="align-middle">
                                $ @order.OrderItems.Select(m => m.Shirt.Price * m.Amount).Sum()
                             </td>
-                            @* @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                            @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
                             {
-                                <td class="align-middle"> @order.AppUser.UserName </td>
-                            } *@
+                                <td class="align-middle"> @order.AppUser.Email </td>
+                            }
                         </tr>
                     }
                 </tbody>
