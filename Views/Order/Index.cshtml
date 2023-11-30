@@ -12,14 +12,13 @@
         <p>
         <h4>Orders List</h4>
         </p>
-        @if (TempData["Error"] != null)
+        @* @if (TempData["Error"] != null)
         {
             <div class="col-md-12 alert alert-danger">
                 <span>@TempData["Error"]</span>
             </div>
-        }
-        else
-        {
+        } *@
+        
 
             <table class="table table-striped">
                 <thead>
@@ -62,7 +61,7 @@
                     }
                 </tbody>
             </table>
-        }
+        
 
     </div>
 </div>

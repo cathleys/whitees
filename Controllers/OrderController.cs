@@ -21,10 +21,10 @@ namespace Whitees.Controllers
         {
             var orders = await _uow.OrderRepository.GetOrdersByUserIdAndRoleAsync();
 
-            if (orders.Count <= 0)
-            {
-                TempData["Error"] = "You don't have orders yet. Make purchase now!";
-            }
+            // if (orders.Count <= 0)
+            // {
+            //     TempData["Error"] = "You don't have orders yet. Make purchase now!";
+            // }
             return View(orders);
         }
 
