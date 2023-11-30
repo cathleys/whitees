@@ -17,9 +17,10 @@
             <div class="col-md-12 alert alert-danger">
                 <span>@TempData["Error"]</span>
             </div>
-        }
-        else
-        {
+        }else{
+
+        
+        
 
             <table class="table table-striped">
                 <thead>
@@ -52,11 +53,11 @@
                                 </ul>
                             </td>
                             <td class="align-middle">
-                                @order.OrderItems.Select(m => m.Shirt.Price * m.Amount).Sum()
+                               $ @order.OrderItems.Select(m => m.Shirt.Price * m.Amount).Sum()
                             </td>
                             @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
                             {
-                                <td class="align-middle"> @order.AppUser.UserName </td>
+                                <td class="align-middle"> @order?.AppUser?.UserName</td>
                             }
                         </tr>
                     }

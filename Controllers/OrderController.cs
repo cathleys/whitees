@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Whitees.Interfaces;
 using Whitees.Repositories;
@@ -45,7 +46,7 @@ namespace Whitees.Controllers
         }
 
 
-
+        [Authorize]
         public async Task<IActionResult> AddItemToCart(int id)
         {
             var item = await _uow.ShirtRepository.GetShirtById(id);
